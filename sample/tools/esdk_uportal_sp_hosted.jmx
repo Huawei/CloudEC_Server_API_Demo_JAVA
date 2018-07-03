@@ -972,7 +972,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;: &quot;user8003@corpnew&quot;,&#xd;
-	&quot;new***&quot;: &quot;Huawei@123&quot;&#xd;
+	&quot;newPwd&quot;: &quot;&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -1068,7 +1068,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;: &quot;user8003@corpnew&quot;,&#xd;
-	&quot;new***&quot;: &quot;Huawei@123&quot;&#xd;
+	&quot;newPwd&quot;: &quot;&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -1970,7 +1970,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-&quot;password&quot;:&quot;36527757&quot;,&#xd;
+&quot;password&quot;:&quot;&quot;,&#xd;
 &quot;nickName&quot;:&quot;user8001&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -2066,7 +2066,7 @@
           <stringProp name="HTTPSampler.port">443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/conferences/121202282/token?password=80853075&amp;nickName=user8001</stringProp>
+          <stringProp name="HTTPSampler.path">/conferences/121202282/token?password=&amp;nickName=user8001</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -3980,7 +3980,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;:&quot;OBS_002@corpnew&quot;,&#xd;
-	&quot;password&quot;:&quot;Huawei@123&quot;,&#xd;
+	&quot;password&quot;:&quot;&quot;,&#xd;
 	&quot;personRole&quot;:&quot;default_individual@enter@corpnew&quot;,&#xd;
 	&quot;userType&quot;:&quot;CORP_MEMBER&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
@@ -5006,6 +5006,7 @@
       </ThreadGroup>
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP请求" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
@@ -5015,7 +5016,6 @@
               </elementProp>
             </collectionProp>
           </elementProp>
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <stringProp name="HTTPSampler.domain">10.174.5.159</stringProp>
           <stringProp name="HTTPSampler.port">443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
@@ -5406,7 +5406,7 @@
 	&quot;userType&quot;: &quot;CORP_MEMBER&quot;,&#xd;
 	&quot;adminType&quot;: &quot;DEFAULT_ADMIN&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
-	&quot;***&quot;: &quot;1qaz@WSX1qaz@WSX&quot;,&#xd;
+	&quot;pwd&quot;: &quot;&quot;,&#xd;
 	&quot;emailAddr&quot;: &quot;OBS_01@corpnew.com&quot;,&#xd;
 	&quot;roleName&quot;: &quot;default_corp_admin@SP@huawei.com&quot;,&#xd;
 	&quot;userIndividual&quot;: {&#xd;
@@ -5545,7 +5545,7 @@
 	&quot;userType&quot;: &quot;CORP_MEMBER&quot;,&#xd;
 	&quot;adminType&quot;: &quot;DEFAULT_ADMIN&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
-	&quot;***&quot;: &quot;1qaz@WSX1qaz@WSX&quot;,&#xd;
+	&quot;pwd&quot;: &quot;&quot;,&#xd;
 	&quot;emailAddr&quot;: &quot;OBS_01@corpnew.com&quot;,&#xd;
 	&quot;roleName&quot;: &quot;default_corp_admin@SP@huawei.com&quot;,&#xd;
 	&quot;userIndividual&quot;: {&#xd;
@@ -7473,7 +7473,7 @@
 &quot;numAssignList&quot;:&#xd;
 [{&quot;startNum&quot;:&quot;+8657112000&quot;,&quot;endNum&quot;:&quot;+8657112100&quot;}],&#xd;
 &quot;numParam&quot;:{&#xd;
-&quot;***&quot;:&quot;1qaz@WSX1qaz@WSX&quot;,&#xd;
+&quot;pwd&quot;:&quot;&quot;,&#xd;
 &quot;odspMode&quot;:&quot;BASE_ON_SUB_GROUP&quot;,&#xd;
 &quot;status&quot;:&quot;ACTIVATING&quot;,&#xd;
 &quot;outOcxPfx&quot;:&quot;BASE_ON_GROUP&quot;,&#xd;
@@ -9008,7 +9008,7 @@
                 <stringProp name="Argument.value">{&#xd;
 &quot;account&quot;:&quot;SP1test@sp1210.huawei.com&quot;,&#xd;
 &quot;name&quot;:&quot;zhsan&quot;,&#xd;
-&quot;***&quot;:&quot;1qaz@WSX&quot;,&#xd;
+&quot;pwd&quot;:&quot;&quot;,&#xd;
 &quot;adminType&quot;:0&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -9105,7 +9105,7 @@
                 <stringProp name="Argument.value">{&#xd;
 &quot;account&quot;:&quot;SP1test@sp1210.huawei.com&quot;,&#xd;
 &quot;name&quot;:&quot;zhsan&quot;,&#xd;
-&quot;***&quot;:&quot;1qaz@WSX&quot;,&#xd;
+&quot;pwd&quot;:&quot;&quot;,&#xd;
 &quot;adminType&quot;:0&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>

@@ -972,7 +972,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;: &quot;user8003@corpnew&quot;,&#xd;
-	&quot;new***&quot;: &quot;Huawei@123&quot;&#xd;
+	&quot;newPwd&quot;: &quot;&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -1068,7 +1068,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;: &quot;user8003@corpnew&quot;,&#xd;
-	&quot;new***&quot;: &quot;Huawei@123&quot;&#xd;
+	&quot;newPwd&quot;: &quot;&quot;&#xd;
 }&#xd;
 </stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -1970,7 +1970,7 @@
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-&quot;password&quot;:&quot;36527757&quot;,&#xd;
+&quot;password&quot;:&quot;&quot;,&#xd;
 &quot;nickName&quot;:&quot;user8001&quot;&#xd;
 }</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
@@ -2066,7 +2066,7 @@
           <stringProp name="HTTPSampler.port">443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/conferences/121202282/token?password=80853075&amp;nickName=user8001</stringProp>
+          <stringProp name="HTTPSampler.path">/conferences/121202282/token?password=&amp;nickName=user8001</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -3982,7 +3982,7 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
 	&quot;userAccount&quot;:&quot;OBS_002@corpnew&quot;,&#xd;
-	&quot;password&quot;:&quot;Huawei@123&quot;,&#xd;
+	&quot;password&quot;:&quot;&quot;,&#xd;
 	&quot;personRole&quot;:&quot;default_individual@enter@corpnew&quot;,&#xd;
 	&quot;userType&quot;:&quot;CORP_MEMBER&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
@@ -4927,7 +4927,7 @@
 	&quot;userType&quot;: &quot;CORP_MEMBER&quot;,&#xd;
 	&quot;adminType&quot;: &quot;DEFAULT_ADMIN&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
-	&quot;***&quot;: &quot;1qaz@WSX1qaz@WSX&quot;,&#xd;
+	&quot;pwd&quot;: &quot;&quot;,&#xd;
 	&quot;emailAddr&quot;: &quot;OBS_01@corpnew.com&quot;,&#xd;
 	&quot;roleName&quot;: &quot;default_corp_admin@SP@huawei.com&quot;,&#xd;
 	&quot;userIndividual&quot;: {&#xd;
@@ -5066,7 +5066,7 @@
 	&quot;userType&quot;: &quot;CORP_MEMBER&quot;,&#xd;
 	&quot;adminType&quot;: &quot;DEFAULT_ADMIN&quot;,&#xd;
 	&quot;isActive&quot;: 1,&#xd;
-	&quot;***&quot;: &quot;1qaz@WSX1qaz@WSX&quot;,&#xd;
+	&quot;pwd&quot;: &quot;&quot;,&#xd;
 	&quot;emailAddr&quot;: &quot;OBS_01@corpnew.com&quot;,&#xd;
 	&quot;roleName&quot;: &quot;default_corp_admin@SP@huawei.com&quot;,&#xd;
 	&quot;userIndividual&quot;: {&#xd;
