@@ -126,9 +126,10 @@ public class CTDPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 			}
 		});
 	}
@@ -148,7 +149,7 @@ public class CTDPanel extends JPanel
     	try 
 		{
 			Token token = LoginUtils.getToken();
-			EcService.post("/number/%2b" + numberField.getText() + "/ctd", request, errInfoLabel, token);
+			EcService.post("/number/" + numberField.getText().replace("+", "%2b") + "/ctd", request, errInfoLabel, token);
 		} catch (Exception e) 
 		{
 			LOGGER.error("getToken error:" + e);

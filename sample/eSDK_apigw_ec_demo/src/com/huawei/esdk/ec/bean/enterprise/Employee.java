@@ -1,4 +1,7 @@
 package com.huawei.esdk.ec.bean.enterprise;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 员工信息参数
  * Staff information parameters
@@ -203,6 +206,7 @@ public class Employee
         this.address = address;
     }
     
+    @JsonProperty("website")
     public String getEmployeeWebsite()
     {
         return website;

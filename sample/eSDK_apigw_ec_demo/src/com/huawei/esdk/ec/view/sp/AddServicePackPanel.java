@@ -108,8 +108,8 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 	private JLabel recordCapabilityLabel = new JLabel("recordCapability:");
 	private JTextField recordCapabilityField = new JTextField(10);
 	
-	private JLabel pincodeCountLabel = new JLabel("pincodeCount:");
-	private JTextField pincodeCountField = new JTextField(10);
+	private JLabel pinCodeCountLabel = new JLabel("pinCodeCount:");
+	private JTextField pinCodeCountField = new JTextField(10);
 	
 	private JLabel agentCountLabel = new JLabel("agentCount:");
 	private JTextField agentCountField = new JTextField(10);
@@ -128,6 +128,15 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 	
 	private JLabel resPackTypeLabel = new JLabel("resPackType:");
 	private JTextField resPackTypeField = new JTextField(10);
+	
+	private JLabel srvPackModeLabel = new JLabel("srvPackMode:");
+	private JTextField srvPackModeField = new JTextField(10);
+	
+	private JLabel recordCycleTimeLabel = new JLabel("recordCycleTime:");
+	private JTextField recordCycleTimeField = new JTextField(10);
+	
+	private JLabel upathGrpCountLabel = new JLabel("upathGrpCount:");
+	private JTextField upathGrpCountField = new JTextField(10);
 	
 	private JButton addBtn = new MyButton(Properties_language_Utils.getValue("sp.AddServicePackPanel.addBtn"));
 	
@@ -191,8 +200,8 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 	    
 	    buildPanel(panel, gridbag, c, new JComponent[] {recordCapabilityLabel}, 0, 10, 10, 20, 1, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {recordCapabilityField}, 1, 10, 10, 20, 1, 1);
-	    buildPanel(panel, gridbag, c, new JComponent[] {pincodeCountLabel}, 2, 10, 10, 20, 1, 1);
-	    buildPanel(panel, gridbag, c, new JComponent[] {pincodeCountField}, 3, 10, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {pinCodeCountLabel}, 2, 10, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {pinCodeCountField}, 3, 10, 10, 20, 1, 1);
 	    
 	    buildPanel(panel, gridbag, c, new JComponent[] {agentCountLabel}, 0, 11, 10, 20, 1, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {agentCountField}, 1, 11, 10, 20, 1, 1);
@@ -209,11 +218,19 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 	    buildPanel(panel, gridbag, c, new JComponent[] {resPackTypeLabel}, 2, 13, 10, 20, 1, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {resPackTypeField}, 3, 13, 10, 20, 1, 1);
 	    
-	    buildPanel(panel, gridbag, c, new JComponent[] {addBtn}, 0, 14, 10, 20, 1, 1);
-	    buildPanel(panel, gridbag, c, new JComponent[] {modifyBtn}, 1, 14, 10, 20, 2, 1);
-	    buildPanel(panel, gridbag, c, new JComponent[] {cancleBtn}, 3, 14, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {srvPackModeLabel}, 0, 14, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {srvPackModeField}, 1, 14, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {recordCycleTimeLabel}, 2, 14, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {recordCycleTimeField}, 3, 14, 10, 20, 1, 1);
+	    
+	    buildPanel(panel, gridbag, c, new JComponent[] {upathGrpCountLabel}, 0, 15, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {upathGrpCountField}, 1, 15, 10, 20, 1, 1);
+	    
+	    buildPanel(panel, gridbag, c, new JComponent[] {addBtn}, 0, 16, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {modifyBtn}, 1, 16, 10, 20, 2, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {cancleBtn}, 3, 16, 10, 20, 1, 1);
 	    cancleBtn.addActionListener(this);
-	    buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 15, 10, 20, 1, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 17, 10, 20, 1, 1);
 	    
 	    //报文位置
 		//message location
@@ -252,9 +269,10 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 					}
 			    };
 			    Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+			    if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 		
@@ -286,9 +304,10 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 					}
 			    };
 			    Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+			    if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 	}
@@ -355,7 +374,7 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 		}
 		if (StringUtils.isNotEmpty(packTypeField.getText())) 
 		{
-			servPack.setPackType(PackTypeEnum.valueOf(packTypeField.getText()));
+			servPack.setPackType(packTypeField.getText());
 		}
 		servPack.setResource(addResourcePack());
 		
@@ -433,9 +452,9 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 		{
 			resourcePack.setRecordCapability(Integer.parseInt(recordCapabilityField.getText()));
 		}
-		if (StringUtils.isNotEmpty(pincodeCountField.getText())) 
+		if (StringUtils.isNotEmpty(pinCodeCountField.getText())) 
 		{
-			resourcePack.setPincodeCount(Integer.parseInt(pincodeCountField.getText()));
+			resourcePack.setPinCodeCount(Integer.parseInt(pinCodeCountField.getText()));
 		}
 		if (StringUtils.isNotEmpty(agentCountField.getText())) 
 		{
@@ -459,7 +478,19 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 		}
 		if (StringUtils.isNotEmpty(resPackTypeField.getText())) 
 		{
-			resourcePack.setResPackType(ResourcePackTypeEnum.valueOf(resPackTypeField.getText()));
+			resourcePack.setResPackType(resPackTypeField.getText());
+		}
+		if (StringUtils.isNotEmpty(srvPackModeField.getText())) 
+		{
+			resourcePack.setSrvPackMode(srvPackModeField.getText());
+		}
+		if (StringUtils.isNotEmpty(recordCycleTimeField.getText())) 
+		{
+			resourcePack.setRecordCycleTime(Integer.parseInt(recordCycleTimeField.getText()));
+		}
+		if (StringUtils.isNotEmpty(upathGrpCountField.getText())) 
+		{
+			resourcePack.setUpathGrpCount(Integer.parseInt(upathGrpCountField.getText()));
 		}
 		
 		return resourcePack;
@@ -536,13 +567,17 @@ public class AddServicePackPanel extends JPanel implements ActionListener
 		hdCountField.setText("");
 		dataCountField.setText("");
 		recordCapabilityField.setText("");
-		pincodeCountField.setText("");
+		pinCodeCountField.setText("");
 		agentCountField.setText("");
 		ivrCountField.setText("");
 		huntgrpCountField.setText("");
 		recordCountField.setText("");
 		curcallCountField.setText("");
 		resPackTypeField.setText("");
+		srvPackModeField.setText("");
+		recordCycleTimeField.setText("");
+		upathGrpCountField.setText("");
+		
 	}
 
 }

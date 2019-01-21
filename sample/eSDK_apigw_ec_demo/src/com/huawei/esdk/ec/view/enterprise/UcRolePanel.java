@@ -126,9 +126,10 @@ public class UcRolePanel extends JPanel
 					}
 			    };
 			    Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+			    if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 			}
 		});
 	}

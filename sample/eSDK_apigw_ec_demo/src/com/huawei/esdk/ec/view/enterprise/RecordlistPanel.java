@@ -155,9 +155,10 @@ public class RecordlistPanel extends JPanel
 					}
 		        };
 		        Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+		        if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 			}
 		});
 	}
@@ -199,26 +200,15 @@ public class RecordlistPanel extends JPanel
 			parameters.put("isExactSearch", isExactSearchField.getText());
 		}
 		
-		try 
-		{
-			Token token = LoginUtils.getToken();
+		Token token = LoginUtils.getToken();
+		 
+		// 利用token发送restful请求
+		// Send a restful request using token
+		EcService.get("/corp/" + corpIdField.getText() + "/recordlist", 
+				request, errInfoLabel, token);
+		 
+		EcService.finish();
 			 
-			// 利用token发送restful请求
-			// Send a restful request using token
-			EcService.get("/corp/" + corpIdField.getText() + "/recordlist", 
-					request, errInfoLabel, token);
-			 
-			EcService.finish();
-			 
-		} 
-		catch (RuntimeException e) 
-		{
-			LOGGER.error("get Token error");
-		}
-		catch (Exception e) 
-		{
-			LOGGER.error("get Token error");
-		}
 		
 	}
 	

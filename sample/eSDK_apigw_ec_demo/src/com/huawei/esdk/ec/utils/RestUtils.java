@@ -100,7 +100,7 @@ public class RestUtils
 	/*
 	 * Max time of waiting for response message
 	 */
-	private static final int SOCKETIMEOUT = 5000;
+	private static final int SOCKETIMEOUT = 0;
     
     private static final RestUtils REST_UTIL = new RestUtils();
     

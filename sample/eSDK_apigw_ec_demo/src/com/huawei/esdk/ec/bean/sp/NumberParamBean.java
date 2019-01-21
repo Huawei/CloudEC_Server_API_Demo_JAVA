@@ -32,7 +32,7 @@ public class NumberParamBean
 	
 	private MMTelExtensionBean mmTelExtension;
 	
-	private Map<RightsEnum,RightsStatusEnum> callRights;
+	private Map<String,String> callRights;
 
 	public String getPwd() 
 	{
@@ -134,12 +134,12 @@ public class NumberParamBean
 		this.mmTelExtension = mmTelExtension;
 	}
 
-	public Map<RightsEnum, RightsStatusEnum> getCallRights() 
+	public Map<String, String> getCallRights() 
 	{
 		return callRights;
 	}
 
-	public void setCallRights(Map<RightsEnum, RightsStatusEnum> callRights) 
+	public void setCallRights(Map<String, String> callRights) 
 	{
 		this.callRights = callRights;
 	}

@@ -60,6 +60,9 @@ public class AddCorpNumPanel extends JPanel
 	private JLabel numberLabel = new JLabel("number:");
 	private JTextField numberField = new JTextField(10);
 	
+	private JLabel shortNumLabel = new JLabel("shortNum:");
+	private JTextField shortNumField = new JTextField(10);
+	
 	private JLabel pwdLabel = new JLabel("pwd:");
 	private JPasswordField pwdField = new JPasswordField(10);
 	
@@ -410,13 +413,16 @@ public class AddCorpNumPanel extends JPanel
         buildPanel(panel, gridbag, c, new JComponent[] {ccoaOut32Label}, 2, 29, 5, 10, 1, 1);
         buildPanel(panel, gridbag, c, new JComponent[] {ccoaOut32Field}, 3, 29, 5, 10, 1, 1);
         
-        buildPanel(panel, gridbag, c, new JComponent[] {setCallPermissionBtn}, 0, 30, 5, 10, 2, 1);
-        buildPanel(panel, gridbag, c, new JComponent[] {addCorpNumBtn}, 2, 30, 5, 10, 2, 1);
-        buildPanel(panel, gridbag, c, new JComponent[] {modifyCorpNumBtn}, 0, 31, 5, 10, 2, 1);
-        buildPanel(panel, gridbag, c, new JComponent[] {cancleBtn}, 2, 31, 5, 10, 1, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {shortNumLabel}, 0, 30, 5, 10, 1, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {shortNumField}, 1, 30, 5, 10, 1, 1);
         
-        buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 32, 5, 10, 1, 1);
-        buildPanel(panel, gridbag, c, new JComponent[] {tipInfoLabel}, 0, 33, 5, 10, 4, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {setCallPermissionBtn}, 0, 31, 5, 10, 2, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {addCorpNumBtn}, 2, 31, 5, 10, 2, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {modifyCorpNumBtn}, 0, 32, 5, 10, 2, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {cancleBtn}, 2, 32, 5, 10, 1, 1);
+        
+        buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 33, 5, 10, 1, 1);
+        buildPanel(panel, gridbag, c, new JComponent[] {tipInfoLabel}, 0, 34, 5, 10, 4, 1);
         
         //报文位置
         //message location
@@ -458,8 +464,9 @@ public class AddCorpNumPanel extends JPanel
             		}
 				};
 				Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+				if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 	        }
 		});
@@ -492,8 +499,9 @@ public class AddCorpNumPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});

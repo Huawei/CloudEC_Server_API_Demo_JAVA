@@ -270,8 +270,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -303,8 +304,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -336,8 +338,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -369,8 +372,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -402,8 +406,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -435,8 +440,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -468,8 +474,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -501,8 +508,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -534,8 +542,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -567,8 +576,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -600,8 +610,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -633,8 +644,9 @@ public class BasicMeetingPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-	            if(!future.isDone()) {
-	            	LOGGER.error("addMouseListener fail");
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
 	            }
 			}
 		});
@@ -1014,17 +1026,7 @@ public class BasicMeetingPanel extends JPanel
 			Map<String, String> httpHeaders = request.getHttpHeaders();
 			httpHeaders.put("Conference-Authorization", MeetingTokenUtils.getMeetingToken());
 			
-			String participantID = participantIDField.getText();
-			if (participantID.contains("#")) 
-			{
-				participantID = participantIDField.getText().replaceAll("#", "%23");
-			}
-			
-			if (participantID.contains("@")) 
-			{
-				participantID = participantID.replace("@", "%40");
-			}
-			EcService.delete("/conferences/" + conferenceidField.getText() + "/participants/" + participantID, 
+			EcService.delete("/conferences/" + conferenceidField.getText() + "/participants/" + numberField.getText(), 
 					request, errInfoLabel, token);
 			
 			EcService.finish();

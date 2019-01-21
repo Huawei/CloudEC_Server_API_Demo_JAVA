@@ -23,7 +23,7 @@ public class ResourcePack
 	
 	private Integer recordCapability;
 	
-	private Integer pincodeCount;
+	private Integer pinCodeCount;
 	
 	private Integer agentCount;
 	
@@ -35,7 +35,43 @@ public class ResourcePack
 	
 	private Integer curcallCount;
 	
-	private ResourcePackTypeEnum resPackType;
+	private String resPackType;
+	
+	private String srvPackMode;
+	
+	private Integer recordCycleTime;
+	
+	private Integer upathGrpCount;
+	
+	public String getSrvPackMode() 
+	{
+		return srvPackMode;
+	}
+
+	public void setSrvPackMode(String srvPackMode) 
+	{
+		this.srvPackMode = srvPackMode;
+	}
+
+	public Integer getRecordCycleTime() 
+	{
+		return recordCycleTime;
+	}
+
+	public void setRecordCycleTime(Integer recordCycleTime) 
+	{
+		this.recordCycleTime = recordCycleTime;
+	}
+
+	public Integer getUpathGrpCount()
+	{
+		return upathGrpCount;
+	}
+
+	public void setUpathGrpCount(Integer upathGrpCount)
+	{
+		this.upathGrpCount = upathGrpCount;
+	}
 
 	public Integer getSdMultiPicCount() 
 	{
@@ -137,14 +173,14 @@ public class ResourcePack
 		this.recordCapability = recordCapability;
 	}
 
-	public Integer getPincodeCount() 
+	public Integer getPinCodeCount() 
 	{
-		return pincodeCount;
+		return pinCodeCount;
 	}
 
-	public void setPincodeCount(Integer pincodeCount) 
+	public void setPinCodeCount(Integer pinCodeCount) 
 	{
-		this.pincodeCount = pincodeCount;
+		this.pinCodeCount = pinCodeCount;
 	}
 
 	public Integer getAgentCount() 
@@ -197,12 +233,12 @@ public class ResourcePack
 		this.curcallCount = curcallCount;
 	}
 
-	public ResourcePackTypeEnum getResPackType() 
+	public String getResPackType() 
 	{
 		return resPackType;
 	}
 
-	public void setResPackType(ResourcePackTypeEnum resPackType) 
+	public void setResPackType(String resPackType) 
 	{
 		this.resPackType = resPackType;
 	}

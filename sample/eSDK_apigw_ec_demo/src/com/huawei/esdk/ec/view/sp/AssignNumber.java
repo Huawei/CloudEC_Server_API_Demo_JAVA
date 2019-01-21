@@ -116,7 +116,7 @@ public class AssignNumber extends JPanel
 	
 	private JButton assignBtn = new MyButton(Properties_language_Utils.getValue("sp.AssignNumber.assignBtn"));
 	
-	Map<RightsEnum,RightsStatusEnum> callRights = new HashMap<>();
+	Map<String,String> callRights = new HashMap<>();
 	
 	public AssignNumber()
 	{
@@ -171,7 +171,8 @@ public class AssignNumber extends JPanel
 	    buildPanel(panel, gridbag, c, new JComponent[] {setCallPermissionBtn}, 0, 9, 10, 20, 1, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {assignBtn}, 2, 9, 10, 20, 1, 1);
 	    
-	    buildPanel(panel, gridbag, c, new JComponent[] {tipInfoLabel}, 0, 10, 10, 20, 4, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 10, 10, 20, 4, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {tipInfoLabel}, 0, 11, 10, 20, 4, 1);
 	    
 	    //报文位置
 		//message location
@@ -201,22 +202,23 @@ public class AssignNumber extends JPanel
 	            {
 	            	return;
 	            }
-	            EcService.begin();
-	            EcService.loading(errInfoLabel);
 	            
 	        	Runnable runnable = new Runnable()
 				{
             		@Override
             		public void run()
             		{
-            			callRights.put(RightsEnum.valueOf(rightsEnumField.getText()), 
-            					RightsStatusEnum.valueOf(rightsStatusEnumField.getText()));
+            			callRights.put(rightsEnumField.getText(), 
+            					rightsStatusEnumField.getText());
+            			
+            			showErrInfoWithColor(Properties_language_Utils.getValue("sp.AssignNumber.setTip"));
             		}
 				};
 				Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+				if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 		
@@ -248,9 +250,10 @@ public class AssignNumber extends JPanel
             		}
 				};
 				Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+				if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 	}

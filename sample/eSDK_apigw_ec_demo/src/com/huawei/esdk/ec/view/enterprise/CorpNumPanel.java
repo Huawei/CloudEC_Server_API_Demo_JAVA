@@ -68,6 +68,9 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 	private JLabel assignStatusLabel = new JLabel("assignStatus:");
 	private JTextField assignStatusField = new JTextField(10);
 	
+	private JLabel numLabel = new JLabel("number:");
+	private JTextField numField = new JTextField(10);
+	
 	private JButton queryPageBtn = new MyButton(Properties_language_Utils.
 			getValue("enter.CorpNumPanel.queryPageBtn"),200,35);
 
@@ -80,11 +83,11 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 	private JButton deleteBtn = new MyButton(Properties_language_Utils.
 			getValue("enter.CorpNumPanel.deleteBtn"),200,35);
 
-	private JLabel numLabel = new JLabel("number:");
-	private JTextField numField = new JTextField(10);
-
 	private JButton queryBtn = new MyButton(Properties_language_Utils.
 			getValue("enter.CorpNumPanel.queryBtn"),200,35);
+	
+	private JButton modifyNumCallRightsBtn = new MyButton(Properties_language_Utils.
+			getValue("enter.CorpNumPanel.modifyNumCallRightsBtn"),200,35);
 	
 
 	public CorpNumPanel() 
@@ -122,9 +125,32 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 		buildPanel(panel, gridbag, c, new JComponent[] { queryPageBtn }, 0, 7, 10, 20, 2, 1);
 		buildPanel(panel, gridbag, c, new JComponent[] { deleteBtn }, 2, 7, 10, 20, 2, 1);
 		buildPanel(panel, gridbag, c, new JComponent[] { queryBtn }, 0, 8, 10, 20, 2, 1);
+		
+		buildPanel(panel, gridbag, c, new JComponent[] { modifyNumCallRightsBtn }, 2, 8, 10, 20, 2, 1);
+		modifyNumCallRightsBtn.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				// 构造一个新的JFrame，作为新窗口。
+				// Construct a new JFrame as a new window
+				JFrame frame = new JFrame(Properties_language_Utils.getValue("enter.CorpNumPanel.frameTitle_callRights"));
+				setSize(1050, 680);
+			    frame.setSize(1050, 680);
+			     
+			    JPanel center = new ModifyCallRightsPanel();
+			    JScrollPane centerJPane = new JScrollPane(center);
+			     
+			    frame.getContentPane().add(centerJPane, BorderLayout.CENTER);
+			     
+				frame.setResizable(true);
+				frame.setVisible(true);
+				
+			}
+		});
 
-		buildPanel(panel, gridbag, c, new JComponent[] { errInfoLabel }, 2, 8, 100, 5, 4, 1);
-		buildPanel(panel, gridbag, c, new JComponent[] { tipInfoLabel }, 0, 9, 10, 20, 4, 1);
+		buildPanel(panel, gridbag, c, new JComponent[] { errInfoLabel }, 0, 9, 100, 5, 4, 1);
+		buildPanel(panel, gridbag, c, new JComponent[] { tipInfoLabel }, 0, 10, 10, 20, 8, 1);
 		
 	    //报文位置
 		//message location
@@ -169,9 +195,10 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 		
@@ -203,9 +230,10 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 		
@@ -237,9 +265,10 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 	}
@@ -255,7 +284,7 @@ public class CorpNumPanel extends JPanel implements ActionListener {
 			// 利用token发送restful请求
 			// Send a restful request using token
 			RestRequest request = new RestRequest(HTTPConstant.HTTP_METHOD_GET);
-			EcService.get("/corp/" + corpIdField.getText() + "/number/%2b" + numField.getText(),
+			EcService.get("/corp/" + corpIdField.getText() + "/number/" + numField.getText().replace("+", "%2b"),
 					request, errInfoLabel, token);
 
 			EcService.finish();

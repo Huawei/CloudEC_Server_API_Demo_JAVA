@@ -13,7 +13,7 @@ public class ServPack
 	
 	private String orgId;
 	
-	private PackTypeEnum packType;
+	private String packType;
 	
 	private ResourcePack resource;
 	
@@ -45,12 +45,12 @@ public class ServPack
 		this.orgId = orgId;
 	}
 
-	public PackTypeEnum getPackType()
+	public String getPackType()
 	{
 		return packType;
 	}
 
-	public void setPackType(PackTypeEnum packType) 
+	public void setPackType(String packType) 
 	{
 		this.packType = packType;
 	}

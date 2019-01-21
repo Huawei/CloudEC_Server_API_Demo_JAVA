@@ -149,9 +149,10 @@ public class ConditionRecoveryPanel extends JPanel
 					}
 			    };
 			    Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+			    if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 			 }
 		 });
 	}
@@ -175,31 +176,31 @@ public class ConditionRecoveryPanel extends JPanel
 			}
 			if (StringUtils.isNotEmpty(numCountField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(numCountField.getText());
+				conditionRecoveryBean.setNumCount(Integer.parseInt(numCountField.getText()));
 			}
 			if (StringUtils.isNotEmpty(cxTypeField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(cxTypeField.getText());
+				conditionRecoveryBean.setCxType(Integer.parseInt(cxTypeField.getText()));
 			}
 			if (StringUtils.isNotEmpty(confAcssNumTypeField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(confAcssNumTypeField.getText());
+				conditionRecoveryBean.setConfAcssNumType(Integer.parseInt(confAcssNumTypeField.getText()));
 			}
 			if (StringUtils.isNotEmpty(assignStatusField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(assignStatusField.getText());
+				conditionRecoveryBean.setAssignStatus(Integer.parseInt(assignStatusField.getText()));
 			}
 			if (StringUtils.isNotEmpty(searchKeyField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(searchKeyField.getText());
+				conditionRecoveryBean.setSearchKey(searchKeyField.getText());
 			}
 			if (StringUtils.isNotEmpty(localGatewayField.getText())) 
 			{
-				conditionRecoveryBean.setStartNum(localGatewayField.getText());
+				conditionRecoveryBean.setLocalGateway(localGatewayField.getText());
 			}
 			if (StringUtils.isNotEmpty(callSrcCodeField.getText()))
 			{
-				conditionRecoveryBean.setStartNum(callSrcCodeField.getText());
+				conditionRecoveryBean.setCallSrcCode(Integer.parseInt(callSrcCodeField.getText()));
 			}
 			
 			request.setPayload(conditionRecoveryBean);

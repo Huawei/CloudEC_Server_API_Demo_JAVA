@@ -12,9 +12,13 @@ import javax.swing.JTabbedPane;
 
 import com.huawei.esdk.ec.utils.Properties_language_Utils;
 import com.huawei.esdk.ec.view.admin.SpNumPanel;
-import com.huawei.esdk.ec.view.admin.SpSearchPanel;
+import com.huawei.esdk.ec.view.admin.SysnumPanel;
+import com.huawei.esdk.ec.view.admin.AccesscodePanel;
+import com.huawei.esdk.ec.view.admin.SpManagePanel;
+import com.huawei.esdk.ec.view.admin.SpManagerPanel;
 import com.huawei.esdk.ec.view.common.LanguagePanel;
 import com.huawei.esdk.ec.view.common.LoginPanel;
+import com.huawei.esdk.ec.view.enterprise.AccesscodeBindShortNumPanel;
 import com.huawei.esdk.ec.view.enterprise.BasicMeetingPanel;
 import com.huawei.esdk.ec.view.enterprise.CTDPanel;
 import com.huawei.esdk.ec.view.enterprise.ConferenceAuthenticationPanel;
@@ -24,14 +28,18 @@ import com.huawei.esdk.ec.view.enterprise.CorpMemberPanel;
 import com.huawei.esdk.ec.view.enterprise.CorpNumPanel;
 import com.huawei.esdk.ec.view.enterprise.DepartmentPanel;
 import com.huawei.esdk.ec.view.enterprise.DeviceManagementPanel;
+import com.huawei.esdk.ec.view.enterprise.IcxpfxPanel;
 import com.huawei.esdk.ec.view.enterprise.MemberLevelPanel;
+import com.huawei.esdk.ec.view.enterprise.OcxpfxPanel;
 import com.huawei.esdk.ec.view.enterprise.QueryUCListPresence;
 import com.huawei.esdk.ec.view.enterprise.RecordlistPanel;
 import com.huawei.esdk.ec.view.enterprise.ResetPasswordPanel;
 import com.huawei.esdk.ec.view.enterprise.SendIMsgPanel;
 import com.huawei.esdk.ec.view.enterprise.StateSubscriptionPanel;
 import com.huawei.esdk.ec.view.enterprise.UcRolePanel;
+import com.huawei.esdk.ec.view.enterprise.UserpackManagePanel;
 import com.huawei.esdk.ec.view.enterprise.VideoConferencePanel;
+import com.huawei.esdk.ec.view.sp.AccesscodeSpPanel;
 import com.huawei.esdk.ec.view.sp.CorpManagementPanel;
 import com.huawei.esdk.ec.view.sp.ServicePackPanel;
 
@@ -62,9 +70,21 @@ public class Runme extends JFrame
         adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.spNum"), null, spNumJsp, 
         		Properties_language_Utils.getValue("Runme.adminTab.spNum"));
         
-        JScrollPane spSearchJsp = new JScrollPane(new SpSearchPanel());
-        adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.spSearch"), null, spSearchJsp, 
-        		Properties_language_Utils.getValue("Runme.adminTab.spSearch"));
+        JScrollPane spManageJsp = new JScrollPane(new SpManagePanel());
+        adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.spManage"), null, spManageJsp, 
+        		Properties_language_Utils.getValue("Runme.adminTab.spManage"));
+        
+        JScrollPane spManagerJsp = new JScrollPane(new SpManagerPanel());
+        adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.spManager"), null, spManagerJsp, 
+        		Properties_language_Utils.getValue("Runme.adminTab.spManager"));
+        
+        JScrollPane sysnumJsp = new JScrollPane(new SysnumPanel());
+        adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.sysnum"), null, sysnumJsp, 
+        		Properties_language_Utils.getValue("Runme.adminTab.sysnum"));
+        
+        JScrollPane accesscodeJsp = new JScrollPane(new AccesscodePanel());
+        adminTab.addTab(Properties_language_Utils.getValue("Runme.adminTab.accesscode"), null, accesscodeJsp, 
+        		Properties_language_Utils.getValue("Runme.adminTab.accesscode"));
         
         //spTab
         JTabbedPane spTab = new JTabbedPane();
@@ -81,6 +101,10 @@ public class Runme extends JFrame
         JScrollPane servicePackJsp = new JScrollPane(new ServicePackPanel());
         spTab.addTab(Properties_language_Utils.getValue("Runme.spTab.servicePack"), null, servicePackJsp, 
         		Properties_language_Utils.getValue("Runme.spTab.servicePack"));
+        
+        JScrollPane accesscodeSpJsp = new JScrollPane(new AccesscodeSpPanel());
+        spTab.addTab(Properties_language_Utils.getValue("Runme.spTab.accesscodeSp"), null, accesscodeSpJsp, 
+        		Properties_language_Utils.getValue("Runme.spTab.accesscodeSp"));
         
         //enterpriseTab
         JTabbedPane enterpriseTab = new JTabbedPane();
@@ -126,6 +150,21 @@ public class Runme extends JFrame
         enterpriseTab.addTab(Properties_language_Utils.getValue("Runme.enterTab.memberLevel"), null, memberLevelJsp, 
         		Properties_language_Utils.getValue("Runme.enterTab.memberLevel"));
         
+        JScrollPane OcxpfxJsp = new JScrollPane(new OcxpfxPanel());
+        enterpriseTab.addTab(Properties_language_Utils.getValue("Runme.enterTab.Ocxpfx"), null, OcxpfxJsp, 
+        		Properties_language_Utils.getValue("Runme.enterTab.Ocxpfx"));
+        
+        JScrollPane IcxpfxJsp = new JScrollPane(new IcxpfxPanel());
+        enterpriseTab.addTab(Properties_language_Utils.getValue("Runme.enterTab.Icxpfx"), null, IcxpfxJsp, 
+        		Properties_language_Utils.getValue("Runme.enterTab.Icxpfx"));
+        
+        JScrollPane accesscodeCorpJsp = new JScrollPane(new AccesscodeBindShortNumPanel());
+        enterpriseTab.addTab(Properties_language_Utils.getValue("Runme.enterTab.accesscodeCorp"), null, accesscodeCorpJsp, 
+        		Properties_language_Utils.getValue("Runme.enterTab.accesscodeCorp"));
+        
+        JScrollPane userpackManageJsp = new JScrollPane(new UserpackManagePanel());
+        enterpriseTab.addTab(Properties_language_Utils.getValue("Runme.enterTab.userpackManage"), null, userpackManageJsp, 
+        		Properties_language_Utils.getValue("Runme.enterTab.userpackManage"));
         //IPTTable
         JTabbedPane IPTTab = new JTabbedPane();
         IPTTab.setFont(new Font("宋体", Font.CENTER_BASELINE, 15));

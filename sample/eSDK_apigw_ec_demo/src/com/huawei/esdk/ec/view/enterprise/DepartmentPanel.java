@@ -196,9 +196,10 @@ public class DepartmentPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
             }
         });
         
@@ -230,9 +231,10 @@ public class DepartmentPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
             }
         });
         
@@ -264,9 +266,10 @@ public class DepartmentPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
             }
         });
         // 查询部门，发起GET请求
@@ -297,9 +300,10 @@ public class DepartmentPanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
             }
         });
     }

@@ -110,48 +110,87 @@ public class EcService
 			}
 			try 
 			{
-				QueryResponse<?> responseBean = new ObjectMapper().readValue(normalizeEntity, QueryResponse.class);
-				
-				//处理data，获取会议token的,其他接口返回不包含token，只有会控鉴权有返回token值
-				//Data, to obtain the meeting token, other interfaces return does not contain tokens, 
-				//only the control authentication has returned the token value
-				if(null == responseBean) 
+				//请求录音列表返回格式独特，特殊处理
+				if (normalizeEntity.contains("\\")) 
 				{
-					return null;
-				}
-				else 
-				{
-					Object data = responseBean.getData();
-					beanToJson = StringUtils.beanToJson(data);
-					if (beanToJson.startsWith("{"))
-					{
-						HashMap<String, Object> jsonToMap = StringUtils.jsonToMap(beanToJson);
-						if(null != jsonToMap) 
-						{
-							if (jsonToMap.containsKey("token")) 
-							{
-								String meetingToken = "Basic " + (String)jsonToMap.get("token");
-								//将token存储起来
-								//Store the token
-								MeetingTokenUtils.setMeetingToken(meetingToken);
-							}
-						}
-					}
-					
-					if (RETURNCODE_OK == responseBean.getReturnCode()) 
-					{
-						showErrInfoWithColor(Properties_language_Utils.getValue("resultTip2"), errInfoLabel);
-					}
-					else
-					{
-						showErrInfoWithColor(Properties_language_Utils.getValue("resultTip"), errInfoLabel);
-					}
-					
 					result = "HTTP/1.1 " + response.getHttpCode() + "\n" +
 							StringUtils.formatHttpHeads(response) + "\n" + 
 							StringUtils.formatJson(entity);
+					
+					showErrInfoWithColor(Properties_language_Utils.getValue("resultTip2"), errInfoLabel);
 				}
-			} 
+				else 
+				{
+					//即时消息返回参数处理
+					if(normalizeEntity.contains("resultContext")) 
+					{
+						result = "HTTP/1.1 " + response.getHttpCode() + "\n" +
+								StringUtils.formatHttpHeads(response) + "\n" + 
+								StringUtils.formatJson(normalizeEntity);
+						
+						HashMap<String, Object> jsonToMap = StringUtils.jsonToMap(normalizeEntity);
+						
+						if(null == jsonToMap) 
+						{
+							LOGGER.error("jsonToMap is null");
+							
+							return null;
+						}
+						
+						if (RETURNCODE_OK == Integer.parseInt(String.valueOf(jsonToMap.get("resultCode")))) 
+						{
+							showErrInfoWithColor(Properties_language_Utils.getValue("resultTip2"), errInfoLabel);
+						}
+						else
+						{
+							showErrInfoWithColor(Properties_language_Utils.getValue("resultTip"), errInfoLabel);
+						}
+						
+						return result;
+					}
+					QueryResponse<?> responseBean = new ObjectMapper().readValue(normalizeEntity, QueryResponse.class);
+					
+					//处理data，获取会议token的,其他接口返回不包含token，只有会控鉴权有返回token值
+					//Data, to obtain the meeting token, other interfaces return does not contain tokens, 
+					//only the control authentication has returned the token value
+					if(null == responseBean) 
+					{
+						return null;
+					}
+					else 
+					{
+						Object data = responseBean.getData();
+						beanToJson = StringUtils.beanToJson(data);
+						if (beanToJson.startsWith("{"))
+						{
+							HashMap<String, Object> jsonToMap = StringUtils.jsonToMap(beanToJson);
+							if(null != jsonToMap) 
+							{
+								if (jsonToMap.containsKey("token")) 
+								{
+									String meetingToken = "Basic " + (String)jsonToMap.get("token");
+									//将token存储起来
+									//Store the token
+									MeetingTokenUtils.setMeetingToken(meetingToken);
+								}
+							}
+						}
+						
+						if (RETURNCODE_OK == responseBean.getReturnCode()) 
+						{
+							showErrInfoWithColor(Properties_language_Utils.getValue("resultTip2"), errInfoLabel);
+						}
+						else
+						{
+							showErrInfoWithColor(Properties_language_Utils.getValue("resultTip"), errInfoLabel);
+						}
+						
+						result = "HTTP/1.1 " + response.getHttpCode() + "\n" +
+								StringUtils.formatHttpHeads(response) + "\n" + 
+								StringUtils.formatJson(entity);
+					}
+				} 
+			}
 			catch (RuntimeException e) 
 			{
 				String resultCode = entity.split("<resultCode>")[1].split("</resultCode>")[0];

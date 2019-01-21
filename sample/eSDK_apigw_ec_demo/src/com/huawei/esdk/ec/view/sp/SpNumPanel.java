@@ -150,9 +150,10 @@ public class SpNumPanel extends JPanel implements ActionListener
             		}
 				};
 				Future future = Executors.newSingleThreadExecutor().submit(runnable);
-			    if(!future.isDone()) {
-			        LOGGER.error("addMouseListener fail");
-			    }
+				if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 	        }
 		});
 		        

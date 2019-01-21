@@ -88,6 +88,12 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	private JButton queryCorpResourceBtn = new MyButton(Properties_language_Utils.
 			getValue("sp.corpManagementPanel.queryCorpResourceBtn"),200,35);
 	
+	private JButton queryCorpDetailBtn = new MyButton(Properties_language_Utils.
+			getValue("sp.corpManagementPanel.queryCorpDetailBtn"),200,35);
+	
+	private JButton modifyCorpDetailBtn = new MyButton(Properties_language_Utils.
+			getValue("sp.corpManagementPanel.modifyCorpDetailBtn"),200,35);
+	
 	public CorpManagementPanel() 
 	{
 		add(getPanels());
@@ -123,7 +129,32 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	    buildPanel(panel, gridbag, c, new JComponent[] {searchCorpBtn}, 2, 7, 10, 20, 2, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {queryPageCorpBtn}, 0, 8, 10, 20, 2, 1);
 	    buildPanel(panel, gridbag, c, new JComponent[] {queryCorpResourceBtn}, 2, 8, 10, 20, 2, 1);
-	    buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 9, 100, 5, 4, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {queryCorpDetailBtn}, 0, 9, 10, 20, 2, 1);
+	    buildPanel(panel, gridbag, c, new JComponent[] {modifyCorpDetailBtn}, 2, 9, 10, 20, 2, 1);
+	    modifyCorpDetailBtn.addActionListener(new ActionListener() 
+	    {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				// 构造一个新的JFrame，作为新窗口。
+				// Construct a new JFrame as a new window
+				JFrame frame = new JFrame(Properties_language_Utils.getValue("sp.corpManagementPanel.frameTitle"));
+				
+				setSize(1050, 680);
+			    frame.setSize(1050, 680);
+			    
+			    JPanel center = new ModifyCorpDetailPanel();
+			    JScrollPane centerJPane = new JScrollPane(center);
+			    
+			    frame.getContentPane().add(centerJPane, BorderLayout.CENTER);
+		        frame.setResizable(true);
+		        frame.setVisible(true);
+				
+			}
+		});
+	    
+	    buildPanel(panel, gridbag, c, new JComponent[] {errInfoLabel}, 0, 10, 100, 5, 4, 1);
 	    
 	    //报文位置
 		//message location
@@ -161,9 +192,10 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	            	 }
 				 };
 				 Future future = Executors.newSingleThreadExecutor().submit(runnable);
-			     if(!future.isDone()) {
-			         LOGGER.error("addMouseListener fail");
-			     }
+				 if(future.isDone()) 
+				 {
+					 LOGGER.info("future.isDone() is true");
+				 }
 	         }
 	    });
 		
@@ -195,9 +227,10 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	            	 }
 				 };
 				 Future future = Executors.newSingleThreadExecutor().submit(runnable);
-			     if(!future.isDone()) {
-			         LOGGER.error("addMouseListener fail");
-			     }
+				 if(future.isDone()) 
+				 {
+					 LOGGER.info("future.isDone() is true");
+				 }
 	         }
 	    });
 		
@@ -229,9 +262,10 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	            	 }
 				 };
 				 Future future = Executors.newSingleThreadExecutor().submit(runnable);
-			     if(!future.isDone()) {
-			         LOGGER.error("addMouseListener fail");
-			     }
+				 if(future.isDone()) 
+				 {
+					 LOGGER.info("future.isDone() is true");
+				 }
 	         }
 	    });
 		
@@ -268,11 +302,65 @@ public class CorpManagementPanel extends JPanel implements ActionListener
 	            	 }
 				 };
 				 Future future = Executors.newSingleThreadExecutor().submit(runnable);
-			     if(!future.isDone()) {
-			         LOGGER.error("addMouseListener fail");
-			     }
+				 if(future.isDone()) 
+				 {
+					 LOGGER.info("future.isDone() is true");
+				 }
 	         }
 	    });
+		
+		//查询企业详情按钮事件
+		this.queryCorpDetailBtn.addMouseListener(new MouseAdapter()
+        {
+			 public void mouseClicked(MouseEvent e)
+	         {
+				 showErrInfoWithColor("");
+	            
+	             boolean flag = validateParams(
+	            		 new JTextField[] {corpIdField},
+	            		 new String[] {"corpId"});
+	                
+	             if (!flag)
+	             {
+	            	 return;
+	             }
+	             EcService.begin();
+	             EcService.loading(errInfoLabel);
+	            
+                 Runnable runnable = new Runnable()
+				 {
+	            	 @Override
+	            	 public void run()
+	            	 {
+	                	 
+	                     queryCorpDetail();
+	            	 }
+				 };
+				 Future future = Executors.newSingleThreadExecutor().submit(runnable);
+				 if(future.isDone()) 
+				 {
+					 LOGGER.info("future.isDone() is true");
+				 }
+	         }
+	    });
+	}
+	
+	/**
+	 * 查询企业详情
+	 */
+	private void queryCorpDetail() 
+	{
+		RestRequest request = new RestRequest(HTTPConstant.HTTP_METHOD_GET);
+		try 
+		{
+			Token token = LoginUtils.getToken();
+			EcService.get("/corp/" + corpIdField.getText() + "/detail", request, errInfoLabel,token);
+			EcService.finish();
+		} catch (Exception e) 
+		{
+			LOGGER.error("getToken error:" + e);
+		}
+		
 	}
 	
 	//查询企业资源

@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
@@ -27,6 +28,7 @@ import com.huawei.esdk.ec.bean.enterprise.SubscriberInPic;
 import com.huawei.esdk.ec.constant.HTTPConstant;
 import com.huawei.esdk.ec.service.EcService;
 import com.huawei.esdk.ec.utils.LoginUtils;
+import com.huawei.esdk.ec.utils.MeetingTokenUtils;
 import com.huawei.esdk.ec.utils.Properties_language_Utils;
 import com.huawei.esdk.ec.utils.StringUtils;
 import com.huawei.esdk.ec.view.common.LogPanel;
@@ -157,9 +159,10 @@ public class VideoConferencePanel extends JPanel
 	            	}
 	            };
 	            Future future = Executors.newSingleThreadExecutor().submit(runnable);
-		        if(!future.isDone()) {
-		            LOGGER.error("addMouseListener fail");
-		        }
+	            if(future.isDone()) 
+	            {
+	            	LOGGER.info("future.isDone() is true");
+	            }
 			}
 		});
 		
@@ -174,6 +177,9 @@ public class VideoConferencePanel extends JPanel
 			Token token = LoginUtils.getToken();
 			
 			RestRequest request = new RestRequest(HTTPConstant.HTTP_METHOD_PUT);
+			Map<String, String> httpHeaders = request.getHttpHeaders();
+			httpHeaders.put("Conference-Authorization", MeetingTokenUtils.getMeetingToken());
+			
 			LayoutModeBean layoutModeBean = new LayoutModeBean();
 			layoutModeBean.setSwitchMode(switchModeField.getText());
 			layoutModeBean.setImageType(imageTypeField.getText());
@@ -186,6 +192,8 @@ public class VideoConferencePanel extends JPanel
 			
 			EcService.put("/conferences/" + conferenceidField.getText() + "/layoutMode" ,
 						request, errInfoLabel, token);
+			
+			subscriberInPics.clear();
 			
 			EcService.finish();
 		} 
